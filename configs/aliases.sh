@@ -1,4 +1,4 @@
-alias edotfiles='gvim $DOTFILES'
+alias edotfiles='$EDITOR $DOTFILES'
 
 alias ll='tree --dirsfirst -L 1 -ahv'
 alias bx='bundle exec'
