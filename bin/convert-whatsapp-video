@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+convert_webm_to_mp4() {
+  input_file=$1
+  input_file_name=$(basename $input_file)
+  output_file=/mnt/c/Users/2112o/Videos/${input_file_name%.*}.mp4
+  ffmpeg -fflags +genpts -i $input_file -r 24 $output_file
+}
+
+convert_webm_to_mp4 $@
