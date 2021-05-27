@@ -3,6 +3,7 @@ source $DOTFILES/configs/asdf.sh
 source $DOTFILES/configs/direnv.sh
 source $DOTFILES/configs/homebrew.sh
 source $DOTFILES/configs/editor.sh
+source $DOTFILES/configs/dotfiles_bin.sh
 
 # Choose One
 # source $DOTFILES/configs/prompt/powerline.sh
