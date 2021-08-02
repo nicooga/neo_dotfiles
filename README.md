@@ -1,6 +1,6 @@
 ### How to use
 
-This is mostly for the me of the future.
+This is for the me of the future.
 You are welcome handsome.
 
 ~~~sh
