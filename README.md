@@ -12,5 +12,3 @@ echo 'source $DOTFILES/bash_profile.sh' >> ~/.bashrc
 # Restart and run some one time settings like git aliases and such
 install_dotfiles
 ~~~
-
-Yeaaah
