@@ -8,7 +8,7 @@ main() {
 
 install() {
   if [ ! -d "$installation_dir" ]; then
-    install
+    do_install
   fi
 }
 
