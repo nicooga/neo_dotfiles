@@ -13,5 +13,10 @@ Sessionx.vim
 # Temporary
 .netrwhist
 *~
+
 # Persistent undo
 [._]*.un~
+.tool-versions
+
+# Personal stuff for projects
+**/.personal
