@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+pattern="$(readlink -f $1)/*"
+tmp_file="$DOTFILES/.personal/folder_sizes_tmp/$pattern"
+mkdir -p "$(dirname $tmp_file)"
+
+echo "==="
+echo "tmp_file: $tmp_file"
+echo "pattern: $pattern"
+echo "--- history"
+cat $tmp_file
+echo "---"
+du -sh $pattern > $tmp_file
+cat $tmp_file
+echo "==="
