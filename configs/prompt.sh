@@ -1,1 +1,0 @@
-source $DOTFILES/configs/prompt/$DOTFILES_PROMPT.sh
