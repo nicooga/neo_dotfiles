@@ -6,6 +6,6 @@ alias ll='tree --dirsfirst -L 1 -ahv'
 alias bx='bundle exec'
 alias reload='source $DOTFILES/main.sh'
 
-alias install_dotfiles='sh $DOTFILES/configs/install.sh'
+alias install_dotfiles='sh $0'
 
 alias edit="$EDITOR"
