@@ -1,8 +1,5 @@
 ### How to use
 
-This is for the me of the future.
-You are welcome handsome.
-
 1. Clone repo:
   ~~~sh
   git clone git@github.com:nicooga/neo_dotfiles.git ~/dotfiles
@@ -20,7 +17,7 @@ You are welcome handsome.
   echo 'export DOTFILES=~/dotfiles' >> $config_file
   ~~~
 
-4. Choose an appropiate profile here:
+4. Choose an appropriate profile here:
   ~~~
     echo 'export DOTFILES_PROFILE=bash' >> $config_file
     # ... or
