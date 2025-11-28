@@ -15,7 +15,7 @@ add_folder_to_zsh_path() {
 }
 
 install() {
-  if ! command -v spaceship >/dev/null 2>&1; then
+  if !type spaceship >/dev/null 2>&1; then
     do_install
   fi
 }
