@@ -14,7 +14,7 @@ install_eza() {
 }
 
 define_alias() {
-    alias ll='eza -albgh --level=1 --icons'
+    alias ll='eza -albgh --level=1 --icons --group-directories-first'
 }
 
 main
