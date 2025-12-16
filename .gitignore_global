@@ -22,3 +22,5 @@ Sessionx.vim
 **/.personal
 **/.vscode/
 .vscode/settings.json
+
+.envrc
