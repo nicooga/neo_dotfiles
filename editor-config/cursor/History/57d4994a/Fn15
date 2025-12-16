@@ -1,2 +1,0 @@
-export CFLAGS="-Wno-error=incompatible-function-pointer-types"
-export CPPFLAGS="-Wno-error=incompatible-function-pointer-types"
