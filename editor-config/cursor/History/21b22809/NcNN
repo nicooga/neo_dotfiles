@@ -1,0 +1,1 @@
+export GOOGLE_APPLICATION_CREDENTIALS=GOOGLE_APPLICATION_CREDENTIALS=/Users/ichigolas/.config/gcloud/application_default_credentials.json

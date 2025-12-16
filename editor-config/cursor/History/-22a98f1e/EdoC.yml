@@ -1,0 +1,122 @@
+x-app: &app
+  build:
+    args:
+      TARGETARCH: ${TARGETARCH:-arm64}
+    dockerfile: Dockerfile.development
+  image: credit-card-api-web
+  tty: true
+  stdin_open: true
+  depends_on:
+    - db
+    - minio
+    - redis
+  environment: &base-env
+    # General variables
+    RAILS_ENV: ${RAILS_ENV:-development}
+    PORT: ${PORT:-3000}
+    DB_HOST: db
+    DB_USERNAME: postgres
+    DB_PORT: ${DB_PORT:-5432}
+    DB_DEV_NAME: ${DB_DEV_NAME:-cc_api_dev}
+    DB_TEST_NAME: ${DB_TEST_NAME:-cc_api_test}
+    # FDR_GATEWAY_URL: http://host.docker.internal:3002
+    FDR_GATEWAY_URL:  
+    REDIS_URL: redis
+    STUB_AB_API: ${STUB_AB_API:-true}
+    STUB_FDR_API: ${STUB_FDR_API:-true}
+    SWAGGER_URL: http://${DOCKER_IP:-localhost}:7100
+    RAILS_LOGGER: /proc/1/fd/1
+    DARWIN_URL: http://host.docker.internal:3001
+    AWS_CUSTOM_ENDPOINT: http://minio:9000/
+    REPRESENTMENT_JOB_ENABLED: 1
+
+    # Sidekiq configuration
+    SIDEKIQ_SCHEDULE_DISABLED: "true"
+    SIDEKIQ_CONCURRENCY: 15
+
+    # Keep parity with MINIO_ROOT_USER and MINIO_ROOT_PASSWORD
+    # to be able to access minio
+    AWS_ACCESS_KEY_ID: minio
+    SYNCSORT_AWS_ACCESS_KEY_ID: minio
+    AWS_SECRET_ACCESS_KEY: minio123
+    SYNCSORT_AWS_SECRET_ACCESS_KEY: minio123
+    AWS_BUCKET_NAME: cards-bucket
+    SYNCSORT_AWS_BUCKET_NAME: cards-bucket
+
+    # Other varialbes
+    PAYMENT_GATEWAY_BASE_URL: ${PAYMENT_GATEWAY_BASE_URL:-http://host.docker.internal:7080}
+    PAYMENT_GATEWAY_AUTH_TOKEN: ${PAYMENT_GATEWAY_AUTH_TOKEN:-2068be42-b0e7-491d-80dc-8ac8651bb719}
+    LOCKBOX_API_KEY: ${LOCKBOX_API_KEY:-8bd1da75-07f6-4263-8b4b-9252f50a936e}
+    WEB_CONCURRENCY: 0
+    REDIS_ENCRYPTION_KEY: "XZHAtJi2KyYQmuqkr/KGbw=="
+    CARD_ACCOUNT_SERVICE_URL: http://host.docker.internal:3215
+
+    # Bundler
+    BUNDLE_PATH: /bundle
+
+  volumes:
+    - .:/code
+    - bundle:/bundle
+
+services:
+  db:
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+      POSTGRES_MULTIPLE_DATABASES: ${DB_DEV_NAME:-cc_api_dev}, ${DB_TEST_NAME:-cc_api_test}
+    image: "public.ecr.aws/docker/library/postgres:13.9-alpine"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./pg-init-scripts:/docker-entrypoint-initdb.d
+
+  minio:
+    image: minio/minio
+    command: server /data
+    environment:
+      # Keep parity with AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY
+      # to have the same interface with AWS S3
+      MINIO_ROOT_USER: minio
+      MINIO_ROOT_PASSWORD: minio123
+    volumes:
+      # NOTE: no longer shared with FDR Gateway
+      - minio_data:/data
+
+  redis:
+    image: public.ecr.aws/docker/library/redis
+    command: redis-server --save '' --appendonly yes
+    volumes:
+      - redis_data:/data
+
+  sidekiq:
+    <<: *app
+    environment:
+      <<: *base-env
+      SIDEKIQ_CONCURRENCY: ${SIDEKIQ_CONCURRENCY:-15} 
+      SIDEKIQ_COUNT: ${SIDEKIQ_COUNT:-1}
+      SIDEKIQ_MAXMEM_MB: ${SIDEKIQ_MAXMEM_MB:-10500}
+
+    entrypoint: ["/code/bin/local-entrypoint-sidekiq.sh"]
+    command: [
+      "bundle", "exec", "sidekiqswarm",
+      "-q", "sidekiq_high",
+      "-q", "payment_files",
+      "-q", "sidekiq_normal",
+      "-q", "sidekiq_low",
+    ] 
+    depends_on:
+      - web
+
+  web:
+    <<: *app
+    ports:
+      - target: ${PORT:-3000}
+        published: 7100
+        protocol: tcp
+        mode: host
+
+volumes:
+  minio_data:
+  db_data:
+  redis_data:
+  # This volume is going to be used to store the gems installation,
+  # So we don't need to installed the gems twice (web, sidekiq)
+  bundle:

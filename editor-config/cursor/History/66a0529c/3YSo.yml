@@ -1,0 +1,539 @@
+emails:
+  address_mismatch:
+    from: 'AvantCard <no-reply@avant.com>'
+    reply_to: '<no-reply@avant.com>'
+    templateflow_uuid: 708ff0b3-42d6-4459-888d-b349be9b4319
+    headers:
+      X-Mailgun-Tag: 'address-discrepancy'
+
+  credit_card_issued:
+    templateflow_uuid:  7868d6f5-6654-4eeb-a3e5-a3e559da0289
+    from:               'AvantCard <no-reply@avant.com>'
+    reply_to:           'AvantCard <no-reply@avant.com>'
+    headers:
+      X-Mailgun-Tag:    'card-issued'
+
+  credit_card_activation_confirmation:
+    from: 'AvantCard <no-reply@avant.com>'
+    reply_to: 'AvantCard <no-reply@avant.com>'
+    templateflow_uuid: 7b854c9b-40ee-4f28-8873-7a6ed92a5fb5
+    headers:
+      X-Mailgun-Tag: 'card-activated'
+
+  credit_card_autopay_confirmation:
+    from: 'AvantCard <no-reply@avant.com>'
+    reply_to: 'AvantCard <no-reply@avant.com>'
+    templateflow_uuid: 1a8bbfbc-8605-47dc-8a35-ad22e2549c88
+    force: true
+    headers:
+      X-Mailgun-Tag: 'autopay-confirmation'
+    bounce_handler: '::Avant::Email::SendEmailAsLetter'
+
+  credit_card_autopay_payment_reminder:
+    from: 'AvantCard <creditcards@avant.com>'
+    reply_to: 'AvantCard <creditcards@avant.com>'
+    templateflow_uuid: cdc72fb1-b183-4342-8b90-cc73962b7286
+    headers:
+      X-Mailgun-Tag: 'autopay-payment-reminder'
+      X-Mailgun-Tag: 'card-payment-reminder'
+
+  credit_card_activation_reminder_14d:
+    from: 'AvantCard <creditcards@avant.com>'
+    reply_to: 'AvantCard <creditcards@avant.com>'
+    templateflow_uuid: 2ec830b7-6d33-49e6-8c1c-ba9d7780f251
+    headers:
+      X-Mailgun-Tag: 'no-activation-14d'
+
+  credit_card_activation_reminder_21d:
+    from: 'AvantCard <creditcards@avant.com>'
+    reply_to: 'AvantCard <creditcards@avant.com>'
+    templateflow_uuid: c50c7d4f-e877-4cb6-bdb1-04917f35e9b8
+    headers:
+      X-Mailgun-Tag: 'no-activation-21d'
+
+  credit_card_no_activation_30d:
+    from: 'AvantCard <creditcards@avant.com>'
+    reply_to: 'AvantCard <creditcards@avant.com>'
+    templateflow_uuid: 1b97fa30-bc45-4289-92a3-8e94eabb2028
+    headers:
+      X-Mailgun-Tag: 'no-activation-30d'
+
+  credit_card_no_activation_survey:
+    from: 'AvantCard <creditcards@avant.com>'
+    reply_to: 'AvantCard <creditcards@avant.com>'
+    templateflow_uuid: e862fe81-d66e-4644-a14b-41dfc4fbefb9
+    headers:
+      X-Mailgun-Tag: 'no-activation-survey'
+
+  credit_card_no_activation_60d:
+    from: 'AvantCard <creditcards@avant.com>'
+    reply_to: 'AvantCard <creditcards@avant.com>'
+    templateflow_uuid: 61e02105-6a97-4d40-b748-edec1990315b
+    headers:
+      X-Mailgun-Tag: 'no-activation-60d'
+
+  credit_card_activation_reminder_90d:
+    from: 'AvantCard <creditcards@avant.com>'
+    reply_to: 'AvantCard <creditcards@avant.com>'
+    templateflow_uuid: 86e97c14-a61e-4b5d-805e-c2d55324347f
+    headers:
+      X-Mailgun-Tag: 'no-activation-90d'
+
+  credit_card_debt_sale_goodbye_letter:
+    from: 'AvantCard <no-reply@avant.com>'
+    reply_to: 'AvantCard <no-reply@avant.com>'
+    templateflow_uuid: 'd52d30d8-3a00-4c81-a906-eee5248fa351'
+    force: true
+    bypass:
+      - SoldProductPolicy
+    headers:
+      X-Mailgun-Tag: 'card-credit-debt-sale-goodbye-letter'
+    bounce_handler: '::Avant::Email::SendEmailAsLetter'
+
+  credit_card_noaa_time_on_books:
+    from: 'AvantCard <no-reply@avant.com>'
+    reply_to: 'AvantCard <no-reply@avant.com>'
+    templateflow_uuid: 8c216d5a-afdc-4503-a29e-0a9d38192051
+    force: true
+    headers:
+      X-Mailgun-Tag: 'noaa-1st-6mo'
+
+  credit_card_nonautopay_payment_reminder:
+    from: 'AvantCard <creditcards@avant.com>'
+    reply_to: 'AvantCard <creditcards@avant.com>'
+    templateflow_uuid: 5a4a0c6f-cc8a-4699-ac6b-4c52d0b3ea0c
+    headers:
+      X-Mailgun-Tag: 'nonautopay-payment-reminder'
+      X-Mailgun-Tag: 'card-payment-reminder'
+
+  credit_card_payment_canceled:
+    from: 'AvantCard <creditcards@avant.com>'
+    reply_to: 'AvantCard <creditcards@avant.com>'
+    templateflow_uuid: fa1d1d07-fd3b-4322-bad3-ee99a14dcaa7
+    headers:
+      X-Mailgun-Tag: 'payment-canceled'
+
+  credit_card_payment_canceled_bad_bank:
+    from: 'AvantCard <creditcards@avant.com>'
+    reply_to: 'AvantCard <creditcards@avant.com>'
+    templateflow_uuid: 3c0bf068-45d9-4a23-98e8-db11031bb5cb
+    bounce_handler: '::Avant::Email::SendEmailAsLetter'
+    headers:
+      X-Mailgun-Tag: 'payment-canceled'
+
+  credit_card_payment_confirmation:
+    from: 'AvantCard <no-reply@avant.com>'
+    reply_to: 'AvantCard <no-reply@avant.com>'
+    templateflow_uuid: 8cb7c6f1-de75-4159-9993-548de920de8c
+    headers:
+      X-Mailgun-Tag: 'payment-confirmation'
+
+  credit_card_payment_failed:
+    from: 'AvantCard <creditcards@avant.com>'
+    reply_to: 'AvantCard <creditcards@avant.com>'
+    templateflow_uuid: 3adc4cac-61c1-4453-bc52-d157efc68745
+    headers:
+      X-Mailgun-Tag: 'failed-payment'
+
+  credit_card_payment_failed_debit_card:
+    subject: 'Your AvantCard Payment Did Not Process'
+    from: 'AvantCard <creditcards@avant.com>'
+    reply_to: 'AvantCard <creditcards@avant.com>'
+    templateflow_uuid: c867a82d-2e65-43d7-a09a-b4d28d7f051b
+    headers:
+      X-Mailgun-Tag: 'failed-payment'
+
+  credit_card_payment_failed_bad_bank:
+    from: 'AvantCard <creditcards@avant.com>'
+    reply_to: 'AvantCard <creditcards@avant.com>'
+    templateflow_uuid: d89871ed-b59b-48f3-99c6-a78adc5a570c
+    bounce_handler: '::Avant::Email::SendEmailAsLetter'
+    headers:
+      X-Mailgun-Tag: 'failed-payment'
+
+  credit_card_payment_scheduled:
+    from: 'AvantCard <no-reply@avant.com>'
+    reply_to: 'AvantCard <no-reply@avant.com>'
+    templateflow_uuid: 016aab40-8257-4e84-89fa-acd7d70350d9
+    headers:
+      X-Mailgun-Tag: 'payment-scheduled'
+
+  credit_card_returned_payment_fee:
+    from: 'AvantCard <creditcards@avant.com>'
+    reply_to: 'AvantCard <creditcards@avant.com>'
+    templateflow_uuid: 7e5ac65b-6807-41d9-8243-35234ebdf0cc
+    headers:
+      X-Mailgun-Tag: 'returned-payment-fee'
+
+  credit_card_statement_available:
+    from: 'AvantCard <no-reply@avant.com>'
+    reply_to: '<no-reply@avant.com>'
+    templateflow_uuid: eb7d4563-5406-4f09-8ae2-aab076796a97
+    headers:
+      X-Mailgun-Tag: 'statement-available'
+
+  credit_card_modified_payment:
+    from: 'AvantCard <creditcards@avant.com>'
+    reply_to: 'AvantCard <creditcards@avant.com>'
+    templateflow_uuid: 0e871ac1-6ba6-4ed4-9eba-bbfde633b144
+    headers:
+      X-Mailgun-Tag: 'modified-payment'
+      X-Mailgun-Drop-Message: 'yes'
+
+  credit_card_autopay_unenrollment:
+    from: 'AvantCard <creditcards@avant.com>'
+    reply_to: 'AvantCard <creditcards@avant.com>'
+    templateflow_uuid: ff499a2b-c143-4235-9a9f-553fcbdf1be2
+    headers:
+      X-Mailgun-Tag: 'autopay-unenrollment'
+    force: true
+    bounce_handler: '::Avant::Email::SendEmailAsLetter'
+
+  credit_card_fraud_cool_down:
+    subject: 'Thank You for Contacting us about your Avant Credit Card'
+    from: 'AvantCard <no-reply@avant.com>'
+    reply_to: 'no-reply <no-reply@avant.com>'
+    templateflow_uuid: 8e156e73-b1eb-48b3-a098-bbca79bae60d
+    headers:
+      X-Mailgun-Tag: 'card-fraud-cool-down'
+
+  credit_card_product_overview:
+    from: 'AvantCard <no-reply@avant.com>'
+    reply_to: 'no-reply <no-reply@avant.com>'
+    templateflow_uuid: d2b96bd1-d2c6-4a9b-b347-897c5434873f
+    attachment_renderer: '::Avant::Email::AttachmentRenderer::CardmemberAgreement'
+    bounce_handler: '::Avant::Email::BounceHandler::MailCardmemberAgreement'
+    headers:
+      X-Mailgun-Tag: 'card-product-overview'
+    force: true
+    after_action: '::Avant::Actions::Servicing::SendCardmemberAgreementLetterIfNeeded'
+
+  credit_card_reissue:
+    from: 'AvantCard <no-reply@avant.com>'
+    reply_to: 'no-reply <no-reply@avant.com>'
+    templateflow_uuid: 56a83eb9-944a-47c9-a1fd-174c4ee9cff5
+    headers:
+      X-Mailgun-Tag: 'card-reissue'
+
+  credit_card_unprocessable_payment:
+    subject: Notice - Unable to Process Payment
+    templateflow_uuid: e26e658b-6e62-42ad-aece-81554c4b1f53
+    force: true
+
+  credit_card_opt_out_and_closure:
+    from: 'AvantCard <no-reply@avant.com>'
+    reply_to: 'no-reply <no-reply@avant.com>'
+    templateflow_uuid: a7db2c6b-7efa-4036-8026-bc2070831ab7
+    headers:
+      X-Mailgun-Tag: 'terms-opt-out'
+
+  credit_card_account_closure:
+    from: 'AvantCard <no-reply@avant.com>'
+    reply_to: 'no-reply <no-reply@avant.com>'
+    templateflow_uuid: 7050f44b-fae5-4cb8-a403-049bf383ce59
+    headers:
+      X-Mailgun-Tag: 'card-account-closure'
+
+  credit_card_credit_line_increase_cooldown_noaa:
+    from: 'AvantCard <no-reply@avant.com>'
+    reply_to: 'no-reply <no-reply@avant.com>'
+    templateflow_uuid: 46c6b82f-3886-45e8-8fc2-5d07a648f166
+    force: true
+    bypass:
+      - SoldProductPolicy
+    headers:
+      X-Mailgun-Tag: 'card-credit-line-increase-cooldown-noaa'
+    bounce_handler: '::Avant::Email::SendEmailAsLetter'
+
+  credit_card_approved_for_cli:
+    from: 'AvantCard <no-reply@avant.com>'
+    reply_to: 'no-reply <no-reply@avant.com>'
+    templateflow_uuid: 45c619e5-ee4f-4bec-92f4-e2635ed5d833
+    headers:
+      X-Mailgun-Tag: 'card-approved-for-cli'
+    bounce_handler: '::Avant::Email::SendEmailAsLetter'
+
+  credit_card_missing_fico_noaa:
+    from: 'AvantCard <no-reply@avant.com>'
+    reply_to: 'no-reply <no-reply@avant.com>'
+    templateflow_uuid: 5b1c0530-3549-493c-bc3a-a629919732f8
+    headers:
+      X-Mailgun-Tag: 'card-cli-missing-fico-noaa'
+    bounce_handler: '::Avant::Email::SendEmailAsLetter'
+
+  credit_card_bank_account_updated:
+    from: 'AvantCard <no-reply@avant.com>'
+    reply_to: 'no-reply <no-reply@avant.com>'
+    templateflow_uuid: 2ea67d36-6fa0-4c23-96c4-37ae394b10f8
+    headers:
+      X-Mailgun-Tag: 'bank-account-updated'
+    force: true
+
+  credit_card_late_fee_waiver_update:
+    from: 'AvantCard <no-reply@avant.com>'
+    reply_to: 'no-reply <no-reply@avant.com>'
+    templateflow_uuid: 'e942d6db-563e-4186-a90b-10578d355864'
+    bounce_handler: '::Avant::Email::SendEmailAsLetter'
+
+  credit_card_credit_line_increase_retry_declined:
+    from: 'AvantCard <no-reply@avant.com>'
+    reply_to: 'no-reply <no-reply@avant.com>'
+    templateflow_uuid: 2ff431b7-7b2c-41c8-851a-5a9574cdda2a
+    headers:
+      X-Mailgun-Tag: 'card-credit-line-increase-retry-declined'
+
+  credit_card_travel_notification_confirmation:
+    from: 'AvantCard <no-reply@avant.com>'
+    reply_to: 'no-reply <no-reply@avant.com>'
+    templateflow_uuid: a1502896-42fc-451f-8405-2873bb3e22f3
+    bounce_handler: '::Avant::Email::SendEmailAsLetter'
+
+  credit_card_lock_toggled:
+    from: 'AvantCard <no-reply@avant.com>'
+    reply_to: 'no-reply <no-reply@avant.com>'
+    templateflow_uuid: 793d7000-fe2e-4cbe-980a-cc2658a244cd
+
+  credit_card_reage_plan_completed:
+    from: 'AvantCard <creditcards@avant.com>'
+    reply_to: 'no-reply <no-reply@avant.com>'
+    templateflow_uuid: 790afb46-c453-42f8-b852-ef08c87060fa
+    bounce_handler: '::Avant::Email::SendEmailAsLetter'
+
+  credit_card_reage_plan_reversed:
+    from: 'AvantCard <creditcards@avant.com>'
+    reply_to: 'no-reply <no-reply@avant.com>'
+    templateflow_uuid: b217244e-6fcd-4c3f-952e-215752540dc0
+    bounce_handler: '::Avant::Email::SendEmailAsLetter'
+
+  credit_card_reage_plan_started:
+    from: 'AvantCard <creditcards@avant.com>'
+    reply_to: 'no-reply <no-reply@avant.com>'
+    templateflow_uuid: 4847155a-4116-49ac-beba-1b1c8ec2cb57
+    bounce_handler: '::Avant::Email::SendEmailAsLetter'
+
+  credit_card_reage_plan_terminated:
+    from: 'AvantCard <creditcards@avant.com>'
+    reply_to: 'no-reply <no-reply@avant.com>'
+    templateflow_uuid: 6b2579b3-e37e-4078-be5a-95c47903e120
+    bounce_handler: '::Avant::Email::SendEmailAsLetter'
+
+  credit_card_modification_plan_started:
+    from: 'AvantCard <creditcards@avant.com>'
+    reply_to: 'no-reply <no-reply@avant.com>'
+    templateflow_uuid: 423fcdbe-4b41-4928-9e13-e40160044a93
+    force: true
+    bounce_handler: '::Avant::Email::SendEmailAsLetter'
+
+  # TODO: Delete subject when the template is approved
+  credit_card_modification_plan_lock_in_payment_received:
+    subject: 'Avant Credit Card Payment Plan Information'
+    from: 'AvantCard <creditcards@avant.com>'
+    reply_to: 'no-reply <no-reply@avant.com>'
+    templateflow_uuid: ba86fd87-4645-49fb-9f8a-39ce045496f3
+    force: true
+    bounce_handler: '::Avant::Email::SendEmailAsLetter'
+
+  credit_card_modification_plan_lock_in_payment_processed:
+    from: 'AvantCard <creditcards@avant.com>'
+    reply_to: 'no-reply <no-reply@avant.com>'
+    templateflow_uuid: 3f5d361a-9c2f-4775-8964-b9cdbd15c7e1
+    force: true
+    bounce_handler: '::Avant::Email::SendEmailAsLetter'
+
+  credit_card_modification_plan_terminated:
+    from: 'AvantCard <creditcards@avant.com>'
+    reply_to: 'no-reply <no-reply@avant.com>'
+    templateflow_uuid: b1a00bff-5852-4fdd-b033-fb4797efb4a6
+    force: true
+    bounce_handler: '::Avant::Email::SendEmailAsLetter'
+
+  credit_card_short_term_plan_started:
+    from: 'AvantCard <creditcards@avant.com>'
+    reply_to: 'no-reply <no-reply@avant.com>'
+    bounce_handler: '::Avant::Email::SendEmailAsLetter'
+    templateflow_uuid: a776b771-5e08-4fbe-a548-1662573b3b15
+    force: true
+    bypass:
+      - ActiveEmailPolicy
+      - BadEmailPolicy
+
+  credit_card_short_term_plan_terminated:
+    from: 'AvantCard <creditcards@avant.com>'
+    reply_to: 'no-reply <no-reply@avant.com>'
+    bounce_handler: '::Avant::Email::SendEmailAsLetter'
+    templateflow_uuid: 02accbdb-9436-43bd-a211-7dbe9dbf7bbf
+    force: true
+    bypass:
+      - ActiveEmailPolicy
+      - BadEmailPolicy
+
+  credit_card_short_term_plan_completed:
+    from: 'AvantCard <creditcards@avant.com>'
+    reply_to: 'no-reply <no-reply@avant.com>'
+    bounce_handler: '::Avant::Email::SendEmailAsLetter'
+    templateflow_uuid: 9bf821e9-f067-4648-896e-e53723ff166b
+    force: true
+    bypass:
+      - ActiveEmailPolicy
+      - BadEmailPolicy
+
+  credit_card_short_term_plan_payment_reminder:
+    from: 'AvantCard <creditcards@avant.com>'
+    reply_to: 'no-reply <no-reply@avant.com>'
+    templateflow_uuid: 58dee382-f90e-455f-9cce-764746d2d9b0
+    force: true
+    bypass:
+      - ActiveEmailPolicy
+      - BadEmailPolicy
+
+  credit_card_right_to_cure:
+    templateflow_uuid: fda63758-0c9b-473c-a0e6-c6c681a84ad3
+    force: true
+    bounce_handler: '::Avant::Email::SendEmailAsLetter'
+    after_action: '::Avant::Actions::Servicing::CreateRightToCureNotice'
+    after_action_only_on_delivery: true
+
+  credit_card_noir:
+    subject: Notice of Important Rights
+    templateflow_uuid: f515dfb2-059e-4b40-849e-44bb7dc72679
+    force: false
+    bounce_handler: '::Avant::Email::SendEmailAsLetter'
+    after_action: '::Avant::Actions::Servicing::CreateValidationOfDebtNotice'
+    after_action_only_on_delivery: true
+    bypass:
+      - DoNotEmailConsentPolicy
+
+  skip_pay_approval:
+    from: 'AvantCard <no-reply@avant.com>'
+    reply_to: 'AvantCard <no-reply@avant.com>'
+    templateflow_uuid: 093d883a-75bd-4a11-978b-08499fdae802
+    headers:
+      X-Mailgun-Tag: 'skip-pay-approval'
+    force: true
+    bounce_handler: '::Avant::Email::SendEmailAsLetter'
+
+  skip_pay_completion:
+    from: 'AvantCard <no-reply@avant.com>'
+    reply_to: 'AvantCard <no-reply@avant.com>'
+    templateflow_uuid: 0923cf7b-8270-4ca2-b29a-9b3296570078
+    headers:
+      X-Mailgun-Tag: 'skip-pay-termination'
+    force: true
+    bounce_handler: '::Avant::Email::SendEmailAsLetter'
+
+  credit_card_settlement_agreement:
+    from: 'AvantCard <creditcards@avant.com>'
+    reply_to: 'no-reply <no-reply@avant.com>'
+    templateflow_uuid: e2dae225-be3c-4dd7-9723-9b468bec05ab
+    force: true
+    bypass:
+      - ActiveEmailPolicy
+      - BadEmailPolicy
+
+  credit_card_settlement_completion:
+    from: 'AvantCard <creditcards@avant.com>'
+    reply_to: 'no-reply <no-reply@avant.com>'
+    templateflow_uuid: 0e9e43e2-67fa-4d17-8423-354bf33cf6a1
+    force: true
+    bypass:
+      - ActiveEmailPolicy
+      - BadEmailPolicy
+
+  credit_card_settlement_termination:
+    from: 'AvantCard <creditcards@avant.com>'
+    reply_to: 'no-reply <no-reply@avant.com>'
+    templateflow_uuid: 435f4f5b-5de6-4f2f-939b-b52ebc9f8b64
+    force: true
+    bypass:
+      - ActiveEmailPolicy
+      - BadEmailPolicy
+
+  credit_card_settlement_payment_reminder:
+    from: 'AvantCard <creditcards@avant.com>'
+    reply_to: 'no-reply <no-reply@avant.com>'
+    templateflow_uuid: 7891a9e3-a196-4c06-8953-cc86d598d8c8
+    force: true
+    bypass:
+      - ActiveEmailPolicy
+      - BadEmailPolicy
+
+  credit_card_settlement_missed_payment_reminder:
+    from: 'AvantCard <creditcards@avant.com>'
+    reply_to: 'no-reply <no-reply@avant.com>'
+    templateflow_uuid: bd1813fe-0261-4336-803c-afc42d01dcd8
+    force: true
+    bypass:
+      - ActiveEmailPolicy
+      - BadEmailPolicy
+
+  credit_card_payment_protection_enrollment_confirmation:
+    from: 'AvantCard <no-reply@avant.com>'
+    reply_to: 'no-reply <no-reply@avant.com>'
+    templateflow_uuid: 95de4f8e-c8a5-4a4f-8368-eb9b67c1c568
+    force: true
+    bypass:
+      - ActiveEmailPolicy
+      - BadEmailPolicy
+    headers:
+      X-Mailgun-Tag: 'card-credit-payment-protection-enrollment-confirmation'
+    bounce_handler: '::Avant::Email::SendEmailAsLetter'
+
+
+  credit_card_payment_protection_involuntary_cancellation:
+    from: 'AvantCard <no-reply@avant.com>'
+    reply_to: 'no-reply <no-reply@avant.com>'
+    templateflow_uuid: 5ee35c1b-b465-4a63-a7fc-063122325d8d
+    force: true
+    bypass:
+      - ActiveEmailPolicy
+      - BadEmailPolicy
+      - ChargeOffPolicy
+    headers:
+      X-Mailgun-Tag: 'card-credit-involuntary-payment-protection-cancellation'
+    bounce_handler: '::Avant::Email::SendEmailAsLetter'
+
+  credit_card_payment_protection_voluntary_cancellation:
+    from: 'AvantCard <no-reply@avant.com>'
+    reply_to: 'no-reply <no-reply@avant.com>'
+    templateflow_uuid: dfabd7d8-171b-4aee-83bc-f8a0fb9e00f1
+    force: true
+    bypass:
+      - ActiveEmailPolicy
+      - BadEmailPolicy
+    headers:
+      X-Mailgun-Tag: 'card-credit-voluntary-payment-protection-cancellation'
+    bounce_handler: '::Avant::Email::SendEmailAsLetter'
+
+  credit_card_payment_protection_benefit_payment_confirmation:
+    from: 'AvantCard <no-reply@avant.com>'
+    reply_to: 'no-reply <no-reply@avant.com>'
+    templateflow_uuid: 290a66a5-5330-4ea6-a74d-b61b90993e40
+    force: true
+    bypass:
+      - ActiveEmailPolicy
+      - BadEmailPolicy
+    headers:
+      X-Mailgun-Tag: 'card-credit-payment-protection-benefit-payment-confirmation'
+
+  credit_card_payment_protection_benefit_payment_return:
+    from: 'AvantCard <no-reply@avant.com>'
+    reply_to: 'no-reply <no-reply@avant.com>'
+    templateflow_uuid: a1a0bbd3-e2db-4354-b57c-1ba66036fdf4
+    force: true
+    bypass:
+      - ActiveEmailPolicy
+      - BadEmailPolicy
+    headers:
+      X-Mailgun-Tag: 'card-credit-payment-protection-benefit-payment-return'
+
+  credit_card_payment_protection_enrollment_fee_refund:
+    from: 'AvantCard <no-reply@avant.com>'
+    reply_to: 'no-reply <no-reply@avant.com>'
+    templateflow_uuid: e1b362ec-6984-4c6b-82a6-a652677f58d2
+    force: true
+    bypass:
+      - ActiveEmailPolicy
+      - BadEmailPolicy
+    headers:
+      X-Mailgun-Tag: 'card-credit-payment-protection-benefit-payment-refund'
+

@@ -1,0 +1,108 @@
+services:
+  api: &django
+    build:
+      context: ./
+      dockerfile: Dockerfile.local
+    volumes:
+      - .:/app/
+    ports:
+      - 8000:8000
+    environment:
+      ENVIRONMENT: "local"
+      DB_ENGINE: "postgres"
+      POSTGRES_HOST: postgres
+      POSTGRES_NAME: notifications
+      POSTGRES_USER: notifications
+      POSTGRES_PASSWORD: notifications
+      DJANGO_SECRET_KEY: "django-insecure-o#(bilyw=l9p^0496^n^#4o$)cgm6#bahx%&&6)+#kfw-t!(3-"
+      DJANGO_SETTINGS_MODULE: "base_app.settings"
+      CELERY_BROKER_URL: redis://redis:6379/0
+
+  celeryworker:
+    <<: *django
+    image: notification-service_local_celeryworker
+    container_name: notification-service_local_celeryworker
+    depends_on:
+      - redis
+      - postgres
+    environment:
+      RUN_CELERY_WORKER: "true"
+      ENVIRONMENT: "local"
+      CELERY_BROKER_URL: redis://redis:6379/0
+      PYTHONPATH: /app/src
+    ports: []
+  celerybeat:
+    <<: *django
+    image: notification-service_local_celerybeat
+    container_name: notification-service_local_celerybeat
+    depends_on:
+      - redis
+      - postgres
+    environment:
+      RUN_CELERY_BEAT: "true"
+      ENVIRONMENT: "local"
+      CELERY_BROKER_URL: redis://redis:6379/0
+      PYTHONPATH: /app/src
+    ports: []
+
+  redis:
+    image: public.ecr.aws/docker/library/redis:latest
+    container_name: notification_service_local_redis
+    volumes:
+      - redis_data:/data
+
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_DB: notifications
+      POSTGRES_USER: notifications
+      POSTGRES_PASSWORD: notifications
+      CONN_MAX_AGE: 0
+
+  zookeeper:
+    image: "confluentinc/cp-zookeeper"
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 32181
+    restart: always
+
+  kafka:
+    image: confluentinc/cp-kafka:7.3.1
+    ports:
+      - "9092:9092"
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:32181
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092
+      KAFKA_BROKER_ID: 1
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "false"
+    restart: always
+
+  schema-registry:
+    image: confluentinc/cp-schema-registry:7.3.1
+    depends_on:
+      - kafka
+      - zookeeper
+    ports:
+      - 8090:8090
+    environment:
+      - SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS=PLAINTEXT://kafka:29092
+      - SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL=zookeeper:32181
+      - SCHEMA_REGISTRY_HOST_NAME=schema-registry-server
+      - SCHEMA_REGISTRY_LISTENERSedmehttp://0.0.0.0:8090
+      - SCHEMA_REGISTRY_DEBUG=true
+
+  kafka-topics:
+    image: confluentinc/cp-kafka:7.3.1
+    command: "kafka-topics --bootstrap-server PLAINTEXT://kafka:29092 --create --replication-factor 1 --partitions 2 --topic topic"
+    depends_on:
+      - kafka
+      - zookeeper
+    links:
+      - kafka
+      - zookeeper
+
+volumes:
+  redis_data:
