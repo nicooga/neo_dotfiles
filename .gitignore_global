@@ -24,3 +24,11 @@ Sessionx.vim
 .vscode/settings.json
 
 .envrc
+
+# Python
+__pycache__/
+
+# Claudke
+.claude/
+
+**/.claude/settings.local.json

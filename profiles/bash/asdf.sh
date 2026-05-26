@@ -1,3 +1,3 @@
 # Asdf version manager
-. $HOME/.asdf/asdf.sh
-. $HOME/.asdf/completions/asdf.bash
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+. <(asdf completion bash)
